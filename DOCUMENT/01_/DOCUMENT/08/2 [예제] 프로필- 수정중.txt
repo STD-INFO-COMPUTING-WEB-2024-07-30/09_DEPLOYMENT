@@ -1,0 +1,167 @@
+---------------------------------------------
+프로필 개념
+---------------------------------------------
+-> 각 사용자 계정의 작업환경
+
+-> 프로필환경의 구성
+ 
+쉘(명령어해석기)
+변수
+문법(코드)
+
+---------------------------------------------
+프로필 설정 파일	
+---------------------------------------------
+로그인프로필 : 
+
+
+1)/etc/profile 	  : 전체계정 적용 프로필
+(로그인쉘 프로필)	
+
+2)~/.bash_profile : 개별계정 적용 프로필
+(로그인쉘 프로필)
+
+1)~/.bashrc	  : 개별계정 적용 프로필
+(서브쉘 프로필)	ex) alias 설정	
+			
+2)/etc/bashrc	  :전체적용 계정 프로필
+(서브쉘 프로필)
+
+---------------------------------------------
+프로필 환경 설정 파일 동작 순서
+---------------------------------------------
+
+계정로그인시 
+
+/etc/profile -> ~/.bash_profile -> ~/.bashrc	-> /etc/bashrc
+
+
+---------------------------------------------
+로그인쉘 실습
+---------------------------------------------
+
+[환경]
+스냅샷 돌린후 진행
+user1,user2,user3 계정 추가(패스워드 1)
+vi /etc/profile -> HISTSIZE=0
+vi ~user1/.bash_profile -> HISTSIZE=0
+vi ~user2/.bash_profile -> HISTSIZE=0
+vi ~user3/.bash_profile -> HISTSIZE=0
+
+
+cf) HISTSIZE(환경변수) 사용 
+->사용했던 명령어의 저장 줄수를 설정할수 있는 환경변수
+->화살표를 이용해서 이전 명령어를 불러올수 있음
+->환경변수란 : 모든사용자 계정에서 사용할 수 있는 변수 
+
+
+--------
+[예제-1]  - /etc/profile
+
+[실습]
+vi /etc/profile 	
+HISTSIZE=1000	-명령어 저장수 1000줄	 
+:wq
+
+[확인] 
+user1,user2,user3 로그인 HISTSIZE 적용확인
+
+vi /etc/profile
+HISTSIZE=0
+:wq
+	
+--------
+[예제-2] ~/.bash_profile
+
+[실습]
+
+vi ~user1/.bash_profile
+HISTSIZE=1000
+:wq
+
+[확인]
+
+user1 ->HISTSIZE 적용o
+user2 ->HISTSIZE 적용x
+user3 ->HISTSIZE 적용x
+
+---------------------------------------------
+서브쉘 실습
+---------------------------------------------
+
+
+[환경] - alias사용
+test1,test2,test3 생성
+alias t='touch ~/subshelltest'
+su(Substitute User) : 사용자 전환 명령어 
+su itbank or su heath 
+
+
+--------
+[예제-1] - /etc/bashrc
+
+vi /etc/bashrc
+alias t='touch ~/subshelltest'
+:wq
+
+su test1
+t 엔터->ls -al ~/subshelltest 확인->존재 (확인 후 subshelltest파일 삭제해주세요)
+exit
+su test2
+t 엔터 ->ls -al ~/subshelltest 확인->존재(확인 후 subshelltest파일 삭제해주세요)
+exit
+
+
+vi /etc/bashrc
+alias t='touch ~/subshelltest' 삭제
+:wq
+
+--------
+[예제-2]  - ~/.bashrc
+
+-test2 계정만 alias적용-
+
+
+vi ~test2/.bashrc
+alias t='touch ~/subshelltest'
+:wq
+
+su test1
+t 엔터->ls -al ~/subshelltest 확인 -> x
+exit
+su test2
+t 엔터 ->ls -al ~/subshelltest 확인 -> o
+exit
+
+
+---------------------------------------------
+미니문제
+---------------------------------------------
+
+
+1.전체계정 로그인시 'hi' 를 입력하면  'welcome to Linux'가 출력되게 하세요
+
+2.user1 계정 로그인시 'go' 를 입력하면 'home!!'이 출력되게 하세요
+
+3.로그인 상태에서 다른 계정으로 전환시(su) 모든계정에서 'va'를 입력하면 'cation'이 출력되도록하세요
+
+4.모든 계정 로그인 상태에서 user1 계정 으로 전환시(su) 'u'를 입력하면 'This is user1 Account'가 출력되게 하세요
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

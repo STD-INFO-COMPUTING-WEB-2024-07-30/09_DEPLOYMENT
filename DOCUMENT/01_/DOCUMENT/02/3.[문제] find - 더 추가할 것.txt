@@ -1,0 +1,14 @@
+1. 
+/findtest 디렉토리를 만들고 그안에 a,b,c,d 디렉토리, 1,2,3,4파일을 만든후 
+find 명령어를 이용해서 login.defs을 찾아 /findtest에 복사하세요(/etc/에 있는 파일복사)
+
+2.
+find 명령어를 이용해서 passwd,inittab 한줄명령어로 찾고
+/findtest 에 복사하세요(/etc/에 있는 파일복사)
+
+3. find 명령어를 통해 /findtest 안의 내용중 파일만 검색하세요
+	
+
+4.find 명령어를 통해 /findtest 의 모든 디렉토리의 목록을 볼 수있도록 한줄명령어로 해결하세요
+
+

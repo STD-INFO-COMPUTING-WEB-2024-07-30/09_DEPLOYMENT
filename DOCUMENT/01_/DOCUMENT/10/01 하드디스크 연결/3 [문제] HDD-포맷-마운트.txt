@@ -1,0 +1,36 @@
+HDD(1G) 추가
+
+-------------------
+파티션 나누기
+-------------------
+/dev/sdc1  : 주파티션, +100M
+/dev/sdc2  : 주파티션, +150M
+/dev/sdc3  : 확장파티션, +300M
+/dev/sdc4  : 주파티션, 모든 용량
+/dev/sdc5  : 논리파티션, 모든용량
+
+
+-------------------
+포맷
+-------------------
+mkfs -t ext4 /dev/sdc1
+mkfs -t ext4 /dev/sdc2
+mkfs -t ext4 /dev/sdc4
+mkfs -t ext4 /dev/sdc5
+
+-------------------
+마운트
+-------------------
+-------------
+마운트 포인트
+-------------
+mkdir /test1 /test2 /test4 /test5
+
+-------------
+마운트
+-------------
+mount /dev/sdc1 /test1
+mount /dev/sdc2 /test2
+mount /dev/sdc4 /test4
+mount /dev/sdc5 /test5
+

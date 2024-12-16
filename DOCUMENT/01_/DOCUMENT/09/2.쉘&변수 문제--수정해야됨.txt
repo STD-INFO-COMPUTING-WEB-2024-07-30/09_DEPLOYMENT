@@ -1,0 +1,26 @@
+[환경]	
+useradd heath	--heath계정 추가
+useradd itbank	--itbank 계정 추가
+useradd user1	--user1 계정 추가
+
+passwd heath 	--패스워드 설정
+1
+1
+passwd itbank	--패스워드 설정
+1
+1
+
+passwd user	--패스워드 설정
+1
+1
+=======================================================
+
+1. heath의 홈디렉토리안에 heathbin 디렉토리를 만들고 /bin/cp 명령어를 /home/heath/heatbin/c로 이름변경 복사 한뒤
+PATH 환경변수를 이용해서 로그인시 사용가능하도록 하세요.
+
+2. 전체 로그인 쉘에서 a1 를 실행하면 CDPATH 환경변수에 사용자의 홈디렉토리가 등록되도록  alias a1단축키를 설정하세요. 
+
+3. itbank 계정에 접속시 명령어 프롬프트가 '본인이름_Command>' 로 나오도록 하세요.
+
+4. /backup/histfile 을 HISTFILE 의 경로로 하고 전체 로그인 쉘 환경에 적용 시키세요
+		--->취소 ... 권한을 건드려야된다..

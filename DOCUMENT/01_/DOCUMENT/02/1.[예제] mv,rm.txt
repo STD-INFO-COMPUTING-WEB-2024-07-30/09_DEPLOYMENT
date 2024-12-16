@@ -1,0 +1,45 @@
+==========================================
+mv : 파일 디렉토리 이동(옵션x)
+==========================================
+-환경-
+
+mkdir /mvfile /mvtest
+cd /mvfile
+touch 1 2 3 4 
+mkdir a b c 
+cd /mvtest
+
+
+-실습-
+
+1. mv /mvfile/1 	/mvtest/1		
+2. mv /mvfile/2 	/mvtest			
+3. mv /mvfile/a 	./			
+4. mv /mvfile/3	/mvfile/b	/mvfile/c 	/mvtest	
+5. mv /mvfile/4	/mvtest/sa		
+
+
+==========================================
+rm(remove) : 파일&디렉토리 삭제
+==========================================
+[옵션] 
+-f : 강제 삭제
+-r : 디렉토리 삭제
+-i : 질의(y/n)
+
+[환경]
+mkdir /rmtest 
+cd /rmtest
+touch 1 2 3 4
+mkdir a b c 
+
+[실습] 
+
+rm 1
+rm a
+rm -r a
+rm -f 2
+rm -i 3 	
+rm -fi 3		법칙 6 모순되는 옵션 사용시 마지막 옵션 적용
+rm -if 3 	
+rm -rf b c

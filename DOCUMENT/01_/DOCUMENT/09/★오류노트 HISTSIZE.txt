@@ -1,0 +1,8 @@
+/etc/profile 
+HISTSIZE=0 시	-> 변수 적용
+
+#HISTSIZE=0 시  -> 변수 적용x
+
+예상 
+
+/etc/bash 에 HISTSIZE 기본 값이 내장되어 있을 거란 가정 !!

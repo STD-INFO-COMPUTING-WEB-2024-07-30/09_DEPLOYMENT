@@ -1,0 +1,29 @@
+#!/bin/bash
+clear
+while [ 1 ]
+do
+        echo "-------------계정 생성 프로그램-------------"
+        echo "1. 생성 계정명 입력"
+        echo "2. 생성 계정 개수 입력"
+        echo "3. 생성된 계정 확인"
+        echo "4. 종료"
+        echo "-------------계정 생성 프로그램-------------"
+        echo -n "번호 입력:"
+        read num
+        case $num in
+        1)
+                echo -n "계정명:"
+                read name
+                clear;;
+        2)
+                if [ -s $name ]
+                then
+                        clear
+                        echo "계정명을 먼저 입력해주세요";
+                        continue
+                fi
+                echo -n "생성개수:"
+                read n1
+                i=1
+                while [ $i -le $n1 ]
+

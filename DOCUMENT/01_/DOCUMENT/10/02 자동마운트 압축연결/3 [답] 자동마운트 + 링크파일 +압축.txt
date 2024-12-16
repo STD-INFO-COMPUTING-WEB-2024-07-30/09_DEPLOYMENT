@@ -1,0 +1,80 @@
+
+1. HDD(1G) 추가->재부팅->하나의 파티션(/dev/sdb1)에 전체 용량 부여
+
+fdisk /dev/sdb -> n -> p -> 1 -> 엔터 -> 엔터 -> w
+----------------------------------------------------------------------------------------------
+2. /dev/sdb1을 /home1234 에 자동마운트 하세요
+
+mkdir /home1234
+
+vi /etc/fstab
+/dev/sdb1	/home1234	ext4 	defaults	1 2
+:wq
+
+----------------------------------------------------------------------------------------------
+3. user10 계정생성 (기본 홈 디렉토리경로: /home1234)
+
+useradd -d /home1234/user10 user10
+
+----------------------------------------------------------------------------------------------
+4. user10 의 홈디렉토리에 bin 디렉토리 만들고 /bin/cp, /bin/touch, /bin/vi, /bin/chmod,/bin/chown
+를 bin 디렉토리로 각각 cp10, touch10, vi10,chmod10,chown10 으로 이름변경복사
+
+mkdir ~user10/bin
+chown user10.user10 ~user10/bin
+
+cp /bin/cp ~user10/bin/cp10
+cp /bin/touch ~user10/bin/touch10
+cp /bin/vi ~user10/bin/vi10
+cp /bin/chmod ~user10/bin/chmod10
+cp /bin/chown ~user10/bin/chown10
+
+----------------------------------------------------------------------------------------------
+5. user10 의 bin 디렉토리에 setuid 설정(4755) 할것
+
+cd ~user10/bin 
+chmod 4755 *
+
+----------------------------------------------------------------------------------------------
+6. user10 로그인시 user10의 bin 디렉토리가 환경변수 PATH 에 등록되도록 설정
+
+vi ~user10/.bash_profile
+PATH=&PATH~~~ 에 :~user10/bin   추가
+
+
+----------------------------------------------------------------------------------------------
+7. user10 으로 접속해서 user10 홈디렉토리에 /etc/passwd, /etc/shadow, /etc/group 에 대한 
+링크파일(소프트링크) 을 만드세요 
+
+ln -s /etc/passwd
+ln -s /etc/shadow
+ln -s /etc/group
+
+
+----------------------------------------------------------------------------------------------
+8. user10 접속한 상태에서 환경변수에 등록한 명령어를 이용해서 test1010계정을 만드세요
+ 
+1) =
+vi10 passwd
+test1010:x:2009:2009::/home/test1010:/bin/bash
+:wq!
+
+2) 
+vi10 shadow
+
+user10의 행을 복사 붙여넣기, 앞에 test1010으로 계정명만 변경(user10과 동일한 패스워드)
+
+3)
+vi10 group
+test1010:x:2009:
+:wq!
+
+4)
+cp10 -r /etc/skel /home/test1010
+
+5)
+touch10 /var/spool/mail/test1010
+chmod10 660 /var/spool/mail/test1010
+chown10 test1010.test1010 /var/spool/mail/test1010
+
+

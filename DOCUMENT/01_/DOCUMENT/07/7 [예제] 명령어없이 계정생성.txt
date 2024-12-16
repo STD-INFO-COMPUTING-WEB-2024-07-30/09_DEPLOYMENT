@@ -1,0 +1,33 @@
+1. /etc/passwd
+
+vi /etc/passwd -> 맨마지막줄이동 한행 복사후 수정
+
+2. /etc/group
+
+vi /etc/group -> 맨마지막줄이동, 한행 복사후 수정
+
+3. 스컬경로 복사
+
+cp -r /etc/skel /home/생성계정명
+chmod 700 ~생성계정명
+chown 생성계정명.생성계정명 ~생성계정명
+
+4. 메일함 생성
+
+cd /var/spool/mail
+touch 생성계정명
+chmod 660 생성계정명
+chown 생성계정명.생성계정명 생성계정명
+
+5. 패스워드 설정
+
+passwd 생성 계정명
+
+6. 로그인 해보기
+
+===================================================
+
+1. useradd 명령어 없이 test1010 만드세요
+2. useradd 명령어 없이 test2020 만드세요 
+
+

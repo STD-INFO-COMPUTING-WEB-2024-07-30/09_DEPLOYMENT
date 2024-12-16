@@ -1,0 +1,95 @@
+1.답
+[root@localhost ~]# mkdir /vitest
+[root@localhost ~]# find /etc -name login.defs -o -name grub.cfg -o -name inittab
+/etc/login.defs
+/boot/grub2/grub.cfg
+/etc/inittab
+[root@localhost ~]# cp /etc/login.defs /etc/grub.conf /etc/inittab /vitest
+[root@localhost ~]# ls -l /vitest
+합계 12
+-rw-------. 1 root root  745 2017-01-22 20:55 grub.conf
+-rw-r--r--. 1 root root  884 2017-01-22 20:55 inittab
+-rw-r--r--. 1 root root 1816 2017-01-22 20:55 login.defs
+
+2.답
+[root@localhost ~]# vi /vitest/login.defs
+:!mkdir /vitest
+
+3.답
+:! touch /viexe/1 /viexe/2 /viexe/3 /viexe/4 &&mkdir /viexe/a1 /viexe/a2 /
+viexe/a3 /viexe/a4
+:!ls -l /viexe
+
+4.답
+:.! ls -l /viexe
+
+5.답
+:.!ls -l /viexe
+dd를 이용해서 삭제
+
+6.답
+숫자+yy를 이용해서 복사
+:11
+p
+:w /vitest/sevas
+
+7답
+:%s/DAYS/sevas/g
+:w /vitest/sevas1
+
+8.답
+:w
+:enew
+:.!ifconfig
+:w /vitest/sevas2
+
+9.답
+
+:! mkdir -p /home/vitest/linux/sevas3
+:! cat /vitest/login.defs /vitest/inittab /vitest/grub.conf >/home/vitest/
+linux/sevas3 && head -2 /vitest/sevas /vitest/sevas2 /vitest/sevas3 >>/hom
+e/vitest/linux/sevas3
+
+10.답
+:!mkdir /backup
+:!cp /vitest/inittab /vitest/grub.conf /vitest/login.defs
+:w
+:enew
+:.! ls -l /backup
+수정후
+:w /vitest/a
+:! cat /vitest/a >> /home/vitest/linux/sevas3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
