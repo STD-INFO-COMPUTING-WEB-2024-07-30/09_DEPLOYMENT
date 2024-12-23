@@ -18,4 +18,7 @@ DEPLOYMENT
 yum install certbot
 
 certbot certonly —standalone
+
+sudo openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name ttp -CAfile chain.pem -caname root
+
 ```
