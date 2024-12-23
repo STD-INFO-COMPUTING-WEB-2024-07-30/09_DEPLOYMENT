@@ -1,7 +1,13 @@
 01_TMP_ERROR
 ---
-> <br>
+> /etc/profile 수정 -> /etc/fstab 에서 수정으로 변경할것(적용시간차에 의한 문제)
+```
+vi /etc/fstab
+tmpfs   /tmp    tmpfs   size=5g,mode=1777   0   0
+:wq
 
+mount -a 
+```
 |-|
 |-|
 |<img width=600px src="./DOCUMENT/01_TMP_ERROR/1.png" /> |
