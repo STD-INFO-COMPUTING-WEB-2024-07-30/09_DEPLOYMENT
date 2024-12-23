@@ -30,7 +30,7 @@
 |<img src="./IMG/02/5.png" />|-|
 
 ---
-AWS EC2 JENKINS 권한 상승처리
+Embed Tomcat 권한 부족 동작실패 오류 처리 - AWS EC2 JENKINS 권한 상승처리
 ---
 ```
 vi /etc/sudoers
@@ -40,7 +40,7 @@ vi /etc/sudoers
 :wq
 ```
 ---
-JENKINS POST TASK SCRIPT CODE 변경
+Embed Tomcat 권한 부족 동작실패 오류 처리 - JENKINS POST TASK SCRIPT CODE 변경
 ---
 ```
 #!/bin/bash
