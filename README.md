@@ -11,3 +11,11 @@ DEPLOYMENT
 
 
 
+임시
+---
+> 인증서 발급하기
+```
+yum install certbot
+
+certbot certonly —standalone
+```
