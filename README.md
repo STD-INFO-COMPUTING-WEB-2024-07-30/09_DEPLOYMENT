@@ -14,7 +14,7 @@ DOCKER
 ---
 |-|-|
 |-|-|
-|**DOCKER 기본**|[바로가기](DOCUMENT/04_)|
+|**[완료]DOCKER 기본**|[바로가기](DOCUMENT/04_)|
 |DOCKER COMPOSE|[예정]()|
 |DOCKER HUB|[예정]()|
 |GITHUB ACTION + DOCKER COMPOSE|[예정]()|
