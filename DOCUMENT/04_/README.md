@@ -140,12 +140,14 @@ CONTAINER ID   IMAGE       COMMAND                   CREATED         STATUS     
 
 ```
 > 확인
+
 |-|
 |-|
 |<img src="./IMG/1.png" />|
 |<img src="./IMG/2.png" />|
 |<img src="./IMG/3.png" />|
 |<img src="./IMG/4.png" />|
+
 
 REDIS
 ```
