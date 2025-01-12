@@ -1,0 +1,126 @@
+1. 도커 네트워크 설정
+
+docker network create my-network
+
+docker network create --subnet=192.168.100.0/24 my-custom-network
+
+
+
+#--------------------------------
+# React 컨테이너 실행
+#--------------------------------
+# 바로실행
+docker run -d --network my-custom-network --ip 192.168.100.10  --name react-container -p 3000:80 react-docker-app
+
+# CMD에서 실행(nginx사용중)
+docker run -it --network my-custom-network --ip 192.168.100.10 --name react-container -p 3000:80 react-docker-app /bin/bash
+
+
+#--------------------------------
+# Flask 컨테이너 실행(YOLO)
+#--------------------------------
+# 바로실행
+docker run -d --network my-custom-network --ip 192.168.100.100 --name flask-opencv-container -p 5000:5000 flask-opencv-app
+
+# CMD에서 실행
+docker run -it --network my-custom-network --ip 192.168.100.100 --name flask-opencv-container -p 5000:5000 flask-opencv-app /bin/bash
+
+#--------------------------------
+# Flask 컨테이너 실행(PREDICT)
+#--------------------------------
+# 바로실행
+docker run -d --network my-custom-network --ip 192.168.100.200 --name flask-opencv-container2 -p 5002:5002 -p 5003:5003 -p 5004:5004 flask-opencv-app2
+
+
+# CMD에서 실행
+docker run -it --network my-custom-network --ip 192.168.100.200 --name flask-opencv-container2  -p 5002:5002 -p 5003:5003 -p 5004:5004 flask-opencv-app2 /bin/bash
+
+
+#--------------------------------
+# MYSQLD
+#--------------------------------
+# 바로실행
+docker run -d --network my-custom-network --ip 192.168.100.30 --name mysql8-container -p 3330:3306 mysql-custom:1.0
+
+
+# CMD에서 실행(이렇게 하면안됨!!!!!!!!!!!!)
+docker run -it --network my-custom-network --ip 192.168.100.30 --name mysql8-container  -p 3330:3306 mysql-custom:1.0 /bin/bash
+
+#--------------------------------
+#  SPRING BOOT 
+#--------------------------------
+# 바로실행
+docker run -d --network  my-custom-network --ip 192.168.100.40 --name bn_auth-container -p 8095:8095 bn_auth
+
+
+
+#--------------------------------
+# DOCKER HUB PUSH
+#--------------------------------
+
+docker tag flask-opencv-app junwoogyun/flask-opencv-app:latest
+docker tag flask-opencv-app2 junwoogyun/flask-opencv-app2:latest
+
+docker tag react-docker-app junwoogyun/react-docker-app:latest
+docker tag bn_auth junwoogyun/bn_auth:latest
+docker tag bn_redis junwoogyun/bn_redis:latest
+docker tag mysql-custom:1.0 junwoogyun/mysql-custom:1.0
+
+
+docker push junwoogyun/mysql-custom:1.0
+docker push junwoogyun/bn_redis:latest
+docker push junwoogyun/bn_auth:latest
+docker push junwoogyun/react-docker-app:latest
+
+#--------------------------------
+# DOCKER HUB PULL
+#--------------------------------
+sudo yum update -y
+sudo yum install -y docker
+#
+sudo systemctl start docker
+sudo systemctl enable docker
+#
+sudo usermod -aG docker $USER
+#
+newgrp docker
+
+#
+docker login
+#
+docker pull junwoogyun/react-docker-app:latest
+docker pull junwoogyun/flask-opencv-app:latest
+docker pull junwoogyun/flask-opencv-app2:latest
+
+
+
+
+#--------------------------------
+# DOCKER COMPOSE 명령어
+#--------------------------------
+Docker Compose 빌드:
+docker-compose build
+
+Docker Compose 실행:
+docker-compose up
+
+백그라운드 실행:
+docker-compose up -d
+
+모든 컨테이너 종료 및 정리:
+docker-compose down
+
+
+#--------------------------------
+# 기타
+#--------------------------------
+도커내 ping 설치
+apt-get update && apt-get install -y iputils-ping
+도커내 vi 설치
+apt-get update && apt-get install -y vim
+도커내 ps 설치
+apt-get update && apt-get install -y procps
+
+
+
+

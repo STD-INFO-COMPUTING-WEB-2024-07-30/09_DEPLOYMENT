@@ -1,0 +1,38 @@
+1. 도커 네트워크 설정
+docker network create --subnet=192.168.1.0/24 my-custom-network
+
+#--------------------------------
+# DB
+#--------------------------------
+docker run -d --network my-custom-network --ip 192.168.1.100 --name db-container -p 3330:3306 db:latest
+
+#--------------------------------
+# REDIS
+#--------------------------------
+docker run -d --network my-custom-network --ip 192.168.1.200 --name redis-container -p 6379:6379 redis:latest
+
+
+#--------------------------------
+# BN
+#--------------------------------
+# 실행
+docker run -d --network my-custom-network --ip 192.168.1.20 --name bn-container -p 8095:8095 bn:latest
+
+#CMD 로 접속
+docker run -it --network my-custom-network --ip 192.168.1.20 --name bn-container -p 8095:8095 bn:latest /bin/bash
+
+
+#--------------------------------
+# FN
+#--------------------------------
+# 실행
+docker run -d --network my-custom-network --ip 192.168.1.10 --name fn-container -p 3000:80 fn:latest
+
+#CMD 로 접속
+docker run -it --network my-custom-network --ip 192.168.1.10 --name fn-container -p 3000:80 fn:latest /bin/bash
+
+
+
+
+
+
