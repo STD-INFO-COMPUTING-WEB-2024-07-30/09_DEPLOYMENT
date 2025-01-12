@@ -294,11 +294,31 @@ db           latest    8183cb6d5f37   2 months ago    811MB
 ```
 
 
->BN - 
+>BN - Container 생성
+```
+C:\Users\jwg13>docker run -d --network my-custom-network --ip 192.168.1.20 --name bn-container -p 8095:8095 bn:latest
+c2fa4643bef4a3c374283788c391fd7a7b49ac8317b6e2490e17aad391ea67b7
+
+C:\Users\jwg13>docker ps
+CONTAINER ID   IMAGE          COMMAND                   CREATED          STATUS          PORTS                               NAMES
+c2fa4643bef4   bn:latest      "/__cacert_entrypoin…"   7 seconds ago    Up 6 seconds    0.0.0.0:8095->8095/tcp              bn-container
+7ef389c4cf4b   redis:latest   "docker-entrypoint.s…"   41 minutes ago   Up 41 minutes   0.0.0.0:6379->6379/tcp              redis-container
+52d53d30376a   db:latest      "docker-entrypoint.s…"   49 minutes ago   Up 49 minutes   33060/tcp, 0.0.0.0:3330->3306/tcp   db-container
+```
+
+>확인
 
 
-
-
+|-|
+|-|
+|<img src="./IMG/10.png" />|
+|<img src="./IMG/11.png" />|
+|<img src="./IMG/12.png" />|
+|<img src="./IMG/13.png" />|
+|<img src="./IMG/14.png" />|
+|<img src="./IMG/15.png" />|
+|<img src="./IMG/16.png" />|
+|<img src="./IMG/17.png" />|
 
 
 
