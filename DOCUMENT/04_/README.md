@@ -7,7 +7,7 @@
 
 
 ---
-DOCKER IMAGE 생성
+DB/REDIS DOCKER IMAGE 생성
 ---
 
 > DB - Dockerfile
@@ -108,6 +108,50 @@ REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
 redis        latest    4b7f9efa7422   8 hours ago    173MB
 db           latest    8183cb6d5f37   2 months ago   811MB
 ```
+
+
+
+---
+DB/REDIS CONTAINER 생성/접속
+---
+
+>CUSTOM NETWORK 생성
+```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker network create --subnet=192.168.1.0/24 my-custom-network
+3db963b86664cc514c2410c2576192c73d3d402305618eb885acd9edcc9d5bed
+
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker network ls
+NETWORK ID     NAME                DRIVER    SCOPE
+9fa0e25912b3   bridge              bridge    local
+942157df98eb   host                host      local
+3db963b86664   my-custom-network   bridge    local
+7e7b25210dc0   none                null      local
+
+```
+
+>DB CONTAINER 생성
+```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker run -d --network my-custom-network --ip 192.168.1.100 --name db-container -p 3330:3306 db:latest
+52d53d30376aaf6468593d21b201d7ee6efafc870d593a4bcdb168bf4b94cfc8
+
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker ps
+CONTAINER ID   IMAGE       COMMAND                   CREATED         STATUS         PORTS                               NAMES
+52d53d30376a   db:latest   "docker-entrypoint.s…"   6 seconds ago   Up 6 seconds   33060/tcp, 0.0.0.0:3330->3306/tcp   db-container
+
+```
+
+REDIS
+```
+
+```
+
+---
+-
+---
+
+
+
+
 
 
 > BN
