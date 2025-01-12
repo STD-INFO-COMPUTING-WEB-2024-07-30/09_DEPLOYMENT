@@ -1,3 +1,54 @@
+# DOCKER 
+
+|-|
+|-|
+|[DOCKER 란](https://khj93.tistory.com/entry/Docker-Docker-%EA%B0%9C%EB%85%90)|
+|[DOCKER 란](https://adjh54.tistory.com/352)|
+
+
+---
+DOCKER IMAGE 생성
+---
+
+> DB
+```
+
+```
+
+> REDIS
+```
+
+```
+
+> BN
+```
+
+```
+
+> FN
+```
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+TMP
+---
+---
 EC2 DOCKER 사용해보기(- 수정중 - )
 ---
 
