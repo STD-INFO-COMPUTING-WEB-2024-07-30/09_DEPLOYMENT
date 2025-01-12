@@ -61,13 +61,54 @@ db           latest    8183cb6d5f37   2 months ago   811MB
 
 
 
+> REDIS - Dockerfile
+```
+# Redis 이미지 기반
+FROM redis:latest
 
+# 기본 작업 디렉토리 설정 (선택 사항)
+WORKDIR /usr/local/etc/redis
 
+# 사용자 정의 Redis 설정 파일 복사 (필요한 경우)
+# COPY redis.conf ./redis.conf
 
-> REDIS
+# 포트 노출
+EXPOSE 6379
+
+# Redis 시작 명령 (사용자 정의 설정 파일이 있는 경우 주석 해제)
+# CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]
+CMD ["redis-server"]
+
 ```
 
+> REDIS - Docker Image 생성
 ```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker build -t redis .
+[+] Building 1.9s (7/7) FINISHED                                                                         docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                     0.0s
+ => => transferring dockerfile: 471B                                                                                     0.0s
+ => [internal] load metadata for docker.io/library/redis:latest                                                          1.7s
+ => [auth] library/redis:pull token for registry-1.docker.io                                                             0.0s
+ => [internal] load .dockerignore                                                                                        0.0s
+ => => transferring context: 2B                                                                                          0.0s
+ => [1/2] FROM docker.io/library/redis:latest@sha256:cd13b924409d740ea8abe6677a7d1accf696898408d330a3d7c8234fa7545775    0.0s
+ => => resolve docker.io/library/redis:latest@sha256:cd13b924409d740ea8abe6677a7d1accf696898408d330a3d7c8234fa7545775    0.0s
+ => CACHED [2/2] WORKDIR /usr/local/etc/redis                                                                            0.0s
+ => exporting to image                                                                                                   0.1s
+ => => exporting layers                                                                                                  0.0s
+ => => exporting manifest sha256:79f78ad6cbdd964969f513f202653f617bfc3f7143e2a2530c22688c2d3f4512                        0.0s
+ => => exporting config sha256:9d3b76343575cdee8c3bdce17caf080c9272b5d112b1c1df30d97f8847d76c02                          0.0s
+ => => exporting attestation manifest sha256:d894b65dda824c7f8710266ebf94434e20b37efc294c66ec1e76d56d8e8c3b4a            0.0s
+ => => exporting manifest list sha256:4b7f9efa7422bc4a6d8c2a082a3e6fd47b37ae0538d2da39c53878356a3d8082                   0.0s
+ => => naming to docker.io/library/redis:latest                                                                          0.0s
+ => => unpacking to docker.io/library/redis:latest                                                                       0.0s
+
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+redis        latest    4b7f9efa7422   8 hours ago    173MB
+db           latest    8183cb6d5f37   2 months ago   811MB
+```
+
 
 > BN
 ```
