@@ -10,10 +10,59 @@
 DOCKER IMAGE 생성
 ---
 
-> DB
+> DB - Dockerfile
 ```
+# MySQL 8.0 공식 이미지를 기반으로 설정
+FROM mysql:8.0
+
+# 환경 변수 설정
+ENV MYSQL_ROOT_PASSWORD=Zhfldk11!
+ENV MYSQL_DATABASE=bookdb
+ENV MYSQL_USER=dbonn
+ENV MYSQL_PASSWORD=Zhfldk11!
+
+# 3306 포트 노출
+EXPOSE 3306 
+
+# MySQL 서버 실행
+CMD ["mysqld"]
 
 ```
+> DB - Docker Image 생성
+```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\DB> docker build -t db .
+
+[+] Building 2.1s (6/6) FINISHED                                                                         docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                     0.0s
+ => => transferring dockerfile: 329B                                                                                     0.0s
+ => [internal] load metadata for docker.io/library/mysql:8.0                                                             1.8s
+ => [auth] library/mysql:pull token for registry-1.docker.io                                                             0.0s
+ => [internal] load .dockerignore                                                                                        0.0s
+ => => transferring context: 2B                                                                                          0.0s
+ => CACHED [1/1] FROM docker.io/library/mysql:8.0@sha256:d58ac93387f644e4e040c636b8f50494e78e5afc27ca0a87348b2f577da2b7  0.0s
+ => => resolve docker.io/library/mysql:8.0@sha256:d58ac93387f644e4e040c636b8f50494e78e5afc27ca0a87348b2f577da2b7ff       0.0s
+ => exporting to image                                                                                                   0.1s
+ => => exporting layers                                                                                                  0.0s
+ => => exporting manifest sha256:4eb8d45972b4b5857468f53a241b082fadd1d0a9d532dcb24154d64b1320d155                        0.0s
+ => => exporting config sha256:1132e9319288213d9ae6a8366be335db1866a42e0ed646af58d95dae352bfa02                          0.0s
+ => => exporting attestation manifest sha256:8003dc77b038ecc14a39da01b4aae9417e147bfa954c13920afb5145cf496229            0.0s
+ => => exporting manifest list sha256:8183cb6d5f3706683990212c79a74f53f05369af2f064e96dcbfc66eda08cdd6                   0.0s
+ => => naming to docker.io/library/db:latest                                                                             0.0s
+ => => unpacking to docker.io/library/db:latest                                                                          0.0s
+
+ 2 warnings found (use docker --debug to expand):
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "MYSQL_ROOT_PASSWORD") (line 5)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "MYSQL_PASSWORD") (line 8)
+
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\DB>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+db           latest    8183cb6d5f37   2 months ago   811MB
+```
+
+
+
+
+
 
 > REDIS
 ```
