@@ -139,6 +139,13 @@ CONTAINER ID   IMAGE       COMMAND                   CREATED         STATUS     
 52d53d30376a   db:latest   "docker-entrypoint.s…"   6 seconds ago   Up 6 seconds   33060/tcp, 0.0.0.0:3330->3306/tcp   db-container
 
 ```
+> 확인
+|-|
+|-|
+|<img src="./IMG/1.png" />|
+|<img src="./IMG/2.png" />|
+|<img src="./IMG/3.png" />|
+|<img src="./IMG/4.png" />|
 
 REDIS
 ```
