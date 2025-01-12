@@ -324,7 +324,7 @@ c2fa4643bef4   bn:latest      "/__cacert_entrypoin…"   7 seconds ago    Up 6 s
 
 
 ---
-BN CODE 수정
+FN CODE 수정
 ---
 |-|
 |-|
@@ -334,106 +334,92 @@ BN CODE 수정
 |<img src="./IMG/21.png" />|
 |<img src="./IMG/22.png" />|
 
+---
+FN IMAGE 생성
+---
+>BN Dockerfile
+```
+# React Dockerfile
+FROM node:22 AS build
+WORKDIR /FN
 
+# Install dependencies and build React
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
+# Use Nginx to serve the build files
+FROM nginx:stable
 
+# Copy React build output to Nginx HTML directory
+COPY --from=build /FN/build /usr/share/nginx/html
 
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Expose the Nginx port
+EXPOSE 80
 
+CMD ["nginx", "-g", "daemon off;"]
 
+```
+>BN - Image 생성
+```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\FN>docker build -t fn .
+[+] Building 22.3s (17/17) FINISHED                                                                      docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                     0.0s
+ => => transferring dockerfile: 528B                                                                                     0.0s
+ => [internal] load metadata for docker.io/library/nginx:stable                                                          1.6s
+ => [internal] load metadata for docker.io/library/node:22                                                               1.6s
+ => [auth] library/node:pull token for registry-1.docker.io                                                              0.0s
+ => [auth] library/nginx:pull token for registry-1.docker.io                                                             0.0s
+ => [internal] load .dockerignore                                                                                        0.0s
+ => => transferring context: 2B                                                                                          0.0s
+ => [build 1/6] FROM docker.io/library/node:22@sha256:99981c3d1aac0d98cd9f03f74b92dddf30f30ffb0b34e6df8bd96283f62f12c6   0.0s
+ => => resolve docker.io/library/node:22@sha256:99981c3d1aac0d98cd9f03f74b92dddf30f30ffb0b34e6df8bd96283f62f12c6         0.0s
+ => [internal] load build context                                                                                        0.1s
+ => => transferring context: 718.91kB                                                                                    0.0s
+ => CACHED [stage-1 1/3] FROM docker.io/library/nginx:stable@sha256:df6f3c8e3fb6161cc5e85c8db042c8e62cfb7948fc4d6fddfad  0.0s
+ => => resolve docker.io/library/nginx:stable@sha256:df6f3c8e3fb6161cc5e85c8db042c8e62cfb7948fc4d6fddfad32741c3e2520d    0.0s
+ => CACHED [build 2/6] WORKDIR /FN                                                                                       0.0s
+ => [build 3/6] COPY package*.json ./                                                                                    0.0s
+ => [build 4/6] RUN npm install                                                                                         12.4s
+ => [build 5/6] COPY . .                                                                                                 0.2s
+ => [build 6/6] RUN npm run build                                                                                        7.2s
+ => [stage-1 2/3] COPY --from=build /FN/build /usr/share/nginx/html                                                      0.0s
+ => [stage-1 3/3] COPY nginx.conf /etc/nginx/conf.d/default.conf                                                         0.0s
+ => exporting to image                                                                                                   0.2s
+ => => exporting layers                                                                                                  0.1s
+ => => exporting manifest sha256:331fe9d97952a53f315100d45b960d587170ecc44dd0de9d9d857e7358673913                        0.0s
+ => => exporting config sha256:4e8c97096de295dc567c41301838d8f3cda7dda88ce4da4ba7b9c2027801b20f                          0.0s
+ => => exporting attestation manifest sha256:a48b4b2045f35516001be4738d7ed68aa763e26db788d42f1bcde540290c4532            0.0s
+ => => exporting manifest list sha256:425f59fe03ceebc81c0bf530c1f6298baffbd1dca0478ddf6de1cb55b207f7cc                   0.0s
+ => => naming to docker.io/library/fn:latest                                                                             0.0s
+ => => unpacking to docker.io/library/fn:latest                                                                          0.0s
 
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\FN>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+fn           latest    425f59fe03ce   7 seconds ago    275MB
+bn           latest    0e520857eeab   25 minutes ago   967MB
+redis        latest    4b7f9efa7422   9 hours ago      173MB
+db           latest    8183cb6d5f37   2 months ago     811MB
 
-
-
-
-
+```
 
 
 ---
-TMP
+BN Container 생성
 ---
----
-EC2 DOCKER 사용해보기(- 수정중 - )
----
-
-> DOCKER 설치
+> BN Container 생성
 ```
-[root@ip-10-0-0-8 libs]# yum install docker -y
-[root@ip-10-0-0-8 libs]# docker -v
-[root@ip-10-0-0-8 libs]# systemctl restart docker
-[root@ip-10-0-0-8 libs]# systemctl status docker
 
 ```
 
-DOCKER IMAGE CONTAINER 받기
----
-
-> IMAGE PULL <br>
-
-```
-[root@ip-10-0-0-8 libs]# docker search centos:8
-[root@ip-10-0-0-8 libs]# docker pull centos:8
-7: Pulling from library/centos
-2d473b07cdd5: Pull complete
-Digest: sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4
-Status: Downloaded newer image for centos:7
-docker.io/library/centos:7
-
-[root@ip-10-0-0-8 libs]# docker images
-REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-centos       8         eeb6ee3f44bd   2 years ago   204MB
-
-```
-
-> DOCKER CONTAINER 생성 <br>
-
-```
-[root@ip-10-0-0-8 libs]# docker run --privileged --name centos-test --hostname centos-test --network host  -p 80:80 -it -d centos:8 /sbin/init
-WARNING: Published ports are discarded when using host network mode
-135e94f67eddee71b1a2db522c31ce3655ae222b9cb3ec69ee3b1b52f70a711f
-
-[root@ip-10-0-0-8 libs]# docker ps
-CONTAINER ID   IMAGE      COMMAND        CREATED         STATUS         PORTS     NAMES
-135e94f67edd   centos:8   "/sbin/init"   2 minutes ago   Up 2 minutes             centos-test
 
 
-```
-
-> 방화벽 설정 <br>
-
-|-|
-|-|
-|![20240518194035](https://github.com/MY-ALL-LECTURE/DEPLOYMENT/assets/84259104/146fa9a8-fea6-483a-845c-479e130e6a2b)|
 
 
-> DOCKER CONTAINER 실행<br>
 
-```
-[root@ip-10-0-0-8 libs]# docker exec -it centos-test /bin/bash
-[root@centos-test /]#
 
-```
-
-> 패키지 설치<br>
-
-```
-[root@centos-test /]# yum install -y httpd
-```
-
-> index page만들기 <br>
-
-```
-[root@centos-test /]# cd /var/www/html
-[root@centos-test html]# cat > index.html
-DOCKER_TEST_PAGE
-^C
-
-```
-> 서비스실행<br>
-
-```
-systemctl restart httpd
-systemctl enable httpd
-
-```
 
