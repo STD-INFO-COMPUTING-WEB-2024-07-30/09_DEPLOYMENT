@@ -4,7 +4,7 @@
 |-|
 |[DOCKER 란](https://khj93.tistory.com/entry/Docker-Docker-%EA%B0%9C%EB%85%90)|
 |[DOCKER 란](https://adjh54.tistory.com/352)|
-
+|[DOCKER DESKTOP 설치](https://myanjini.tistory.com/entry/%EC%9C%88%EB%8F%84%EC%9A%B0%EC%97%90-%EB%8F%84%EC%BB%A4-%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%83%91-%EC%84%A4%EC%B9%98)|
 
 ---
 DB/REDIS DOCKER IMAGE 생성
