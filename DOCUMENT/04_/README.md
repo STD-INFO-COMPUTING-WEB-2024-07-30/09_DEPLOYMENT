@@ -110,12 +110,9 @@ db           latest    8183cb6d5f37   2 months ago   811MB
 ```
 
 
-
 ---
-DB/REDIS CONTAINER 생성/접속
+CUSTOM NETWORK 생성
 ---
-
->CUSTOM NETWORK 생성
 ```
 C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker network create --subnet=192.168.1.0/24 my-custom-network
 3db963b86664cc514c2410c2576192c73d3d402305618eb885acd9edcc9d5bed
@@ -128,6 +125,10 @@ NETWORK ID     NAME                DRIVER    SCOPE
 7e7b25210dc0   none                null      local
 
 ```
+
+---
+DB CONTAINER 생성/접속
+---
 
 >DB CONTAINER 생성
 ```
@@ -149,10 +150,26 @@ CONTAINER ID   IMAGE       COMMAND                   CREATED         STATUS     
 |<img src="./IMG/4.png" />|
 
 
-REDIS
+---
+REDIS CONTAINER 생성/접속
+---
+>REDIS CONTAINER 생성
+```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker run -d --network my-custom-network --ip 192.168.1.200 --name redis-container -p 6379:6379 redis:latest
+7ef389c4cf4b44656a87d1e14dbfb99bf2c1aeeaabf86992c23ecd472a705756
+
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\REDIS>docker ps
+CONTAINER ID   IMAGE          COMMAND                   CREATED         STATUS         PORTS                               NAMES
+7ef389c4cf4b   redis:latest   "docker-entrypoint.s…"   2 seconds ago   Up 1 second    0.0.0.0:6379->6379/tcp              redis-container
+52d53d30376a   db:latest      "docker-entrypoint.s…"   8 minutes ago   Up 8 minutes   33060/tcp, 0.0.0.0:3330->3306/tcp   db-container
 ```
 
-```
+> 확인
+
+|-|
+|-|
+|<img src="./IMG/5.png" />|
+|<img src="./IMG/6.png" />|
 
 ---
 -
