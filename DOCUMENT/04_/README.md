@@ -183,13 +183,116 @@ BN CODE 수정
 
 
 
+---
+BN Image 생성
+---
 
+> BN Dockerfile
+```
+# 빌드 스테이지
+FROM gradle:8.11.1-jdk21 AS build
+WORKDIR /app
+COPY . .
+RUN gradle build --no-daemon -x test
 
+# 실행 스테이지
+FROM eclipse-temurin:21-jdk
 
-> BN
+# 기본 작업 디렉토리 설정
+WORKDIR /app
+
+# 빌드 스테이지에서 생성된 JAR 파일을 복사
+COPY --from=build /app/build/libs/*.jar app.jar
+
+# 환경 변수 설정
+ENV TZ=Asia/Seoul
+RUN apt-get update && apt-get install -y \
+    mysql-client \
+    iputils-ping \
+    net-tools \
+    && apt-get clean
+
+# 포트 설정
+EXPOSE 8095
+
+# 실행 명령
+CMD ["java", "-jar", "app.jar"] 
+
 ```
 
+> BN Dockerfile
 ```
+# 빌드 스테이지
+FROM gradle:8.11.1-jdk21 AS build
+WORKDIR /app
+COPY . .
+RUN gradle build --no-daemon -x test
+
+# 실행 스테이지
+FROM eclipse-temurin:21-jdk
+
+# 기본 작업 디렉토리 설정
+WORKDIR /app
+
+# 빌드 스테이지에서 생성된 JAR 파일을 복사
+COPY --from=build /app/build/libs/*.jar app.jar
+
+# 환경 변수 설정
+ENV TZ=Asia/Seoul
+RUN apt-get update && apt-get install -y \
+    mysql-client \
+    iputils-ping \
+    net-tools \
+    && apt-get clean
+
+# 포트 설정
+EXPOSE 8095
+
+# 실행 명령
+CMD ["java", "-jar", "app.jar"] 
+
+```
+
+>BN - Image 생성
+```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\BN>docker build -t bn .
+[+] Building 47.6s (16/16) FINISHED                                                                                                    docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                   0.0s
+ => => transferring dockerfile: 630B                                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/gradle:8.11.1-jdk21                                                                                 1.8s
+ => [internal] load metadata for docker.io/library/eclipse-temurin:21-jdk                                                                              1.8s
+ => [auth] library/gradle:pull token for registry-1.docker.io                                                                                          0.0s
+ => [auth] library/eclipse-temurin:pull token for registry-1.docker.io                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                        0.0s
+ => [internal] load build context                                                                                                                      0.0s
+ => => transferring context: 167.85kB                                                                                                                  0.0s
+ => [build 1/4] FROM docker.io/library/gradle:8.11.1-jdk21@sha256:7990a44ed0ad609ee740426d3becc69ae7d10a5ed14da7e354ad83cf7ef1d087                     0.0s
+ => => resolve docker.io/library/gradle:8.11.1-jdk21@sha256:7990a44ed0ad609ee740426d3becc69ae7d10a5ed14da7e354ad83cf7ef1d087                           0.0s
+ => [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21-jdk@sha256:843686b2422d68890bb3ee90c5d08d9b325b9a2acf06ffca42351c2d187d3921                0.0s
+ => => resolve docker.io/library/eclipse-temurin:21-jdk@sha256:843686b2422d68890bb3ee90c5d08d9b325b9a2acf06ffca42351c2d187d3921                        0.0s
+ => CACHED [build 2/4] WORKDIR /app                                                                                                                    0.0s
+ => [build 3/4] COPY . .                                                                                                                               0.0s
+ => [build 4/4] RUN gradle build --no-daemon -x test                                                                                                  30.7s
+ => CACHED [stage-1 2/4] WORKDIR /app                                                                                                                  0.0s
+ => [stage-1 3/4] COPY --from=build /app/build/libs/*.jar app.jar                                                                                      0.1s
+ => [stage-1 4/4] RUN apt-get update && apt-get install -y     mysql-client     iputils-ping     net-tools     && apt-get clean                       10.1s
+ => exporting to image                                                                                                                                 3.9s
+ => => exporting layers                                                                                                                                3.1s
+ => => exporting manifest sha256:6a9f47b9da522b6e005bf0e520cfa875821b95026572c8a70810739d9402b811                                                      0.0s
+ => => exporting config sha256:65c9b2f5c79e186372bc8c812d1de365e820717b81ebd2294ddef4ed9cddffab                                                        0.0s
+ => => exporting attestation manifest sha256:1f53f67b6a78a7d031dc7a4fbd30ce47131e9333aaec4e81e3fdea1dc24b3245                                          0.0s
+ => => exporting manifest list sha256:43213f028948e4128083dfd8638559b64839c71579d17efc8aeb205d43670a2b                                                 0.0s
+ => => naming to docker.io/library/bn:latest                                                                                                           0.0s
+ => => unpacking to docker.io/library/bn:latest                                                                                                        0.8s
+
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\BN>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+bn           latest    43213f028948   7 seconds ago   967MB
+redis        latest    4b7f9efa7422   8 hours ago     173MB
+db           latest    8183cb6d5f37   2 months ago    811MB
+```
+
 
 > FN
 ```
