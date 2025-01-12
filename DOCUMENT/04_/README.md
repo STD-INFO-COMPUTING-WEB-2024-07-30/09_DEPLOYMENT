@@ -413,8 +413,26 @@ BN Container 생성
 ---
 > BN Container 생성
 ```
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\FN>docker run -d --network my-custom-network --ip 192.168.1.10 --name fn-container -p 3000:80 fn:latest
+f9be7587ac361d354c0cfca70777a649a5558a3504387cf59f0f3770c785e2cc
 
+C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\04_\FN>docker ps
+CONTAINER ID   IMAGE          COMMAND                   CREATED             STATUS             PORTS                               NAMES
+f9be7587ac36   fn:latest      "/docker-entrypoint.…"   4 seconds ago       Up 3 seconds       0.0.0.0:3000->80/tcp                fn-container
+c2fa4643bef4   bn:latest      "/__cacert_entrypoin…"   27 minutes ago      Up 27 minutes      0.0.0.0:8095->8095/tcp              bn-container
+7ef389c4cf4b   redis:latest   "docker-entrypoint.s…"   About an hour ago   Up About an hour   0.0.0.0:6379->6379/tcp              redis-container
+52d53d30376a   db:latest      "docker-entrypoint.s…"   About an hour ago   Up About an hour   33060/tcp, 0.0.0.0:3330->3306/tcp   db-container
 ```
+
+> 확인
+|-|
+|-|
+|<img src="./IMG/23.png" />|
+|<img src="./IMG/24.png" />|
+|<img src="./IMG/25.png" />|
+|<img src="./IMG/26.png" />|
+|<img src="./IMG/27.png" />|
+|<img src="./IMG/28.png" />|
 
 
 
