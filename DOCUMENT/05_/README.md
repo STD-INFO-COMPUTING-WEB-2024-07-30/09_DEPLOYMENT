@@ -1,29 +1,16 @@
-# DOCKER DEPLOY
+# DOCKER COMPOSE 
 
-확인
+---
+COMPOSE란
 ---
 |-|
 |-|
-|<img src="/DATA/04_SB_DOCKER_EC2(JENKINS,DEPLOY)/시나리오 이미지.png"/>|
+|[DOCKER COMPOSE 란](https://hstory0208.tistory.com/entry/Docker-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88Docker-Compose%EB%9E%80-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B0%80)|
 
-> 테스트 시나리오
-```
-1 LOCALHOST에서 작업 이후 git push
-2 github 에서 push 이벤트 감지후 AWS EC2 내의 Jenkins Docker Container로 전달
-3 Jenkins Docker Container 에서 빌드처리
-4 Jenkins Docker Container 에서 SSH Service 연결을 통한 Shell Command 전달
-5 Deploy Server에 Web App 동작 확인
 
-```
-
-INDEX
 ---
+dockercompose.yml 생성
+---
+```
 
-|-|
-|-|
-|-|
-|-|
-|-|
-|-|
-|-|
-|-|
+```
