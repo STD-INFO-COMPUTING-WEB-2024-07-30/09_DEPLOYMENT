@@ -191,6 +191,7 @@ depends_on: DB 서비스가 완전히 준비된 상태(healthy)일 때까지 BN 
 ---
 Docker-compose up
 ---
+
 ```
 C:\Users\jwg13\Downloads\TEST___\09_DEPLOYMENT\DOCUMENT\05_>docker-compose up
 time="2025-01-14T12:44:26+09:00" level=warning msg="C:\\Users\\jwg13\\Downloads\\TEST___\\09_DEPLOYMENT\\DOCUMENT\\05_\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
