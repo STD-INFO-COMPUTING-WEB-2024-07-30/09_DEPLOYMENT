@@ -127,6 +127,8 @@ docker stop $(docker ps -aq)
 # 모든 컨테이너 삭제
 docker rm $(docker ps -aq)
 
+# 모든 이미지 삭제
+docker rmi $(docker images -q) -f
 ```
 
 
