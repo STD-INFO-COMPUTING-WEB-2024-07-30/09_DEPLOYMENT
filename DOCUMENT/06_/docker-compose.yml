@@ -1,0 +1,61 @@
+version: "3.9"
+
+networks:
+  my-custom-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+
+services:
+  DB:
+    image: junwoogyun/react_springboot:db
+    container_name: db-container
+    networks:
+      my-custom-network:
+        ipv4_address: 192.168.1.100
+    ports:
+      - "3330:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: junwoogyun/react_springboot:redis
+    container_name: redis-container
+    networks:
+      my-custom-network:
+        ipv4_address: 192.168.1.200
+    ports:
+      - "6376:6376"
+
+  BN:
+    image: junwoogyun/react_springboot:bn
+    container_name: bn-container
+    networks:
+      my-custom-network:
+        ipv4_address: 192.168.1.20
+    ports:
+      - "8095:8095"
+    depends_on:
+      DB:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8095 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  FN:
+    image: junwoogyun/react_springboot:fn
+    container_name: fn-container
+    networks:
+      my-custom-network:
+        ipv4_address: 192.168.1.10
+    ports:
+      - "3000:80"
+    depends_on:
+      BN:
+        condition: service_healthy

@@ -1,0 +1,20 @@
+#---------------
+# 도커 이미지 태그 변경
+#---------------
+docker tag bn:latest junwoogyun/react_springboot:bn
+docker tag fn:latest junwoogyun/react_springboot:fn
+docker tag db:latest junwoogyun/react_springboot:db
+docker tag redis:latest junwoogyun/react_springboot:redis
+
+#---------------
+# 도커 로그인
+#---------------
+docker login
+
+#---------------
+# 도커허브 PUSH
+#---------------
+docker push junwoogyun/react_springboot:bn
+docker push junwoogyun/react_springboot:fn
+docker push junwoogyun/react_springboot:db
+docker push junwoogyun/react_springboot:redis
