@@ -9,10 +9,17 @@
 ---
 DOCKER IMAGE PUSH 
 ---
+
 >DOCKERHUB REPO 생성
 |-|
 |-|
-|<img src="" />|
+|<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/1.png" />|
+|<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/2.png" />|
+|<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/3.png" />|
+|<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/4.png" />|
+|<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/5.png" />|
+|<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/6.png" />|
+
 
 > DOCKER IMAGE TAG 변경
 ```
@@ -21,14 +28,21 @@ docker tag fn:latest junwoogyun/react_springboot:fn
 docker tag db:latest junwoogyun/react_springboot:db
 docker tag redis:latest junwoogyun/react_springboot:redis
 ```
+> DOCKER IMAGE TAG CHANGE
 |-|
 |-|
-|<img src="" />|
+|<img src="./IMG/02_DOCKER_IMAGE_TAG_CHANGE/1.png" />|
+
+
 
 > DOCKER CMD LOGIN
 |-|
 |-|
-|<img src="" />|
+|<img src="./IMG/03_DOCKER_CMD_LOGIN/1.png" />|
+|<img src="./IMG/03_DOCKER_CMD_LOGIN/2.png" />|
+|<img src="./IMG/03_DOCKER_CMD_LOGIN/3.png" />|
+|<img src="./IMG/03_DOCKER_CMD_LOGIN/4.png" />|
+|<img src="./IMG/03_DOCKER_CMD_LOGIN/5.png" />|
 
 
 > DOCKER IMAGE PUSH 
@@ -40,8 +54,11 @@ docker push junwoogyun/react_springboot:redis
 ```
 |-|
 |-|
-|<img src="" />|
-
+|<img src="./IMG/04_DOCKER_IMAGE_PUSH/1.png" />|
+|<img src="./IMG/04_DOCKER_IMAGE_PUSH/2.png" />|
+|<img src="./IMG/04_DOCKER_IMAGE_PUSH/3.png" />|
+|<img src="./IMG/04_DOCKER_IMAGE_PUSH/4.png" />|
+|<img src="./IMG/04_DOCKER_IMAGE_PUSH/5.png" />|
 
 
 ---
@@ -260,13 +277,16 @@ fn-container     | 2025/01/15 06:43:31 [notice] 1#1: start worker process 38
 fn-container     | 2025/01/15 06:43:31 [notice] 1#1: start worker process 39
 ```
 
+---
+확인
+---
 
-> 확인
-
 |-|
 |-|
-|-|
-|-|
-|-|
- 
+|<img src="./IMG/05_RESULT/1.png" />|
+|<img src="./IMG/05_RESULT/2.png" />|
+|<img src="./IMG/05_RESULT/3.png" />|
+|<img src="./IMG/05_RESULT/4.png" />|
+|<img src="./IMG/05_RESULT/5.png" />|
+|<img src="./IMG/05_RESULT/6.png" />|
 
