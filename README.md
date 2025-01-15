@@ -32,6 +32,8 @@ GITHUB ACTION
 ---
 GITHUB ACTION + AWS 배포
 ---
+|-|-|-|
+|-|-|-|
 |-|GITHUB ACTION + COMPOSE  + AWS CI/CD|[예정](DOCUMENT/10_)|
 
 
