@@ -11,6 +11,7 @@ DOCKER IMAGE PUSH
 ---
 
 >DOCKERHUB REPO 생성
+
 |-|
 |-|
 |<img src="./IMG/01_DOCKERHUB_LOGIN_ADD_REPO/1.png" />|
@@ -22,6 +23,7 @@ DOCKER IMAGE PUSH
 
 
 > DOCKER IMAGE TAG 변경
+
 ```
 docker tag bn:latest junwoogyun/react_springboot:bn
 docker tag fn:latest junwoogyun/react_springboot:fn
@@ -29,13 +31,15 @@ docker tag db:latest junwoogyun/react_springboot:db
 docker tag redis:latest junwoogyun/react_springboot:redis
 ```
 > DOCKER IMAGE TAG CHANGE
+
 |-|
 |-|
 |<img src="./IMG/02_DOCKER_IMAGE_TAG_CHANGE/1.png" />|
 
 
 
-> DOCKER CMD LOGIN
+> DOCKER CMD LOGI
+
 |-|
 |-|
 |<img src="./IMG/03_DOCKER_CMD_LOGIN/1.png" />|
@@ -45,13 +49,15 @@ docker tag redis:latest junwoogyun/react_springboot:redis
 |<img src="./IMG/03_DOCKER_CMD_LOGIN/5.png" />|
 
 
-> DOCKER IMAGE PUSH 
+> DOCKER IMAGE PUSH
+
 ```
 docker push junwoogyun/react_springboot:bn
 docker push junwoogyun/react_springboot:fn
 docker push junwoogyun/react_springboot:db
 docker push junwoogyun/react_springboot:redis
 ```
+
 |-|
 |-|
 |<img src="./IMG/04_DOCKER_IMAGE_PUSH/1.png" />|
