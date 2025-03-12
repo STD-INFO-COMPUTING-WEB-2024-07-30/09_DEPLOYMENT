@@ -4,7 +4,8 @@
 >DOCKER INSTALL
 ```
 yum install -y docker
-
+systemctl restart docker
+systemctl enable docker
 ```
 
 >DOCKER-COMPOSE
