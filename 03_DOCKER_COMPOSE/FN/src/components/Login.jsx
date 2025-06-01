@@ -11,7 +11,7 @@ const Login  = ()=>{
     const validateToken = async () => {
       try {
         // 토큰 유효성 검증을 위한 별도 엔드포인트 호출
-        const resp = await axios.get("/validate", {
+        const resp = await axios.get("http://localhost:8090/validate", {
           withCredentials: true,
         });
         console.log("토큰 검증 성공:", resp);
@@ -29,7 +29,7 @@ const Login  = ()=>{
     const handleLogin = async () => {
         try {
             const resp = await api.post(
-                "/login",
+                "http://localhost:8090/login",
                 { username, password },
                 { headers: { "Content-Type": "application/json" } }
             );

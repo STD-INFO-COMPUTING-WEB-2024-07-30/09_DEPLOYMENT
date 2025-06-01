@@ -8,7 +8,7 @@ const Join  = ()=>{
     const handleJoin = (e)=>{
         axios
             .post(
-                    process.env.REACT_APP_API_URL,
+                'http://localhost:8090/join',
                  {"username":username,"password" : password},
                  {headers:{ 'Content-Type' : 'application/json' }}
             )
