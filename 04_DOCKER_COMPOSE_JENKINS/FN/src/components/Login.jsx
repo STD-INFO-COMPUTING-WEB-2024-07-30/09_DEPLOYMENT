@@ -15,7 +15,7 @@ const Login  = ()=>{
           withCredentials: true,
         });
         console.log("토큰 검증 성공:", resp);
-        navigate("/"); // 성공 시 / 경로로 이동
+        // navigate("/"); // 성공 시 / 경로로 이동
       } catch (error) {
         console.log("토큰 검증 실패:", error);
         // 비정상 응답 시 아무 동작도 하지 않음 (현재 페이지 유지)
@@ -34,7 +34,7 @@ const Login  = ()=>{
                 { headers: { "Content-Type": "application/json" } }
             );
             alert("로그인 성공:", resp.data);
-            navigate("/"); // 성공 시 / 경로로 이동
+            // navigate("/"); // 성공 시 / 경로로 이동
         } catch (error) {
             console.error("로그인 실패:", error.response ? error.response.data : error);
             alert("로그인 실패! 다시 시도해주세요."); // 실패 시 메시지 표시
