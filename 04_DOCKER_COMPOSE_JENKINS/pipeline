@@ -1,0 +1,50 @@
+//여기에 jenkins pipline script만들어줘     
+
+pipeline {
+    agent any
+    
+    environment {
+        GITHUB_REPO = 'https://github.com/STD-INFO-COMPUTING-WEB-2024-07-30/09_DEPLOYMENT.git'
+        TARGET_DIR = '04_DOCKER_COMPOSE_JENKINS'
+        EC2_HOST = '13.125.125.190'  // EC2 인스턴스의 퍼블릭 IP나 DNS
+        EC2_USER = 'ec2-user'       // EC2 사용자 이름 (Amazon Linux의 경우 'ec2-user', Ubuntu의 경우 'ubuntu')
+    }
+    
+    stages {
+        stage('Clone and Deploy on EC2') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY')]) {
+                    sh """
+                        # SSH 키 파일 권한 설정
+                        chmod 600 ${SSH_KEY}
+                        
+                        # EC2에 SSH로 접속하여 명령어 실행
+                        ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} '
+                            # 기존 디렉토리 정리
+                            rm -rf ${TARGET_DIR}
+                            
+                            # GitHub 저장소 클론
+                            git clone ${GITHUB_REPO}
+                            
+                            # 작업 디렉토리로 이동
+                            cd ${TARGET_DIR}
+                            
+                            # Docker Compose 실행
+                            docker-compose down
+                            docker-compose up -d
+                        '
+                    """
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Deployment to EC2 completed successfully!'
+        }
+        failure {
+            echo 'Deployment to EC2 failed!'
+        }
+    }
+}     
