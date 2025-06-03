@@ -15,14 +15,23 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY')]) {
                     sh """
-                        chmod 600 ${SSH_KEY}
-                        ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} '
-                            rm -rf 09_DEPLOYMENT && \
-                            git clone ${GITHUB_REPO} && \
-                            cd 09_DEPLOYMENT/04_DOCKER_COMPOSE_JENKINS && \
-                            docker-compose down && \
-                            docker-compose up -d --scale jenkins=0
-                        '
+                        chmod 600 \${SSH_KEY}
+                        ssh -i \${SSH_KEY} -o StrictHostKeyChecking=no \${EC2_USER}@\${EC2_HOST} "
+                            # 기존 디렉토리 정리
+                            rm -rf 09_DEPLOYMENT && \\
+                            
+                            # GitHub 저장소 클론
+                            git clone https://github.com/STD-INFO-COMPUTING-WEB-2024-07-30/09_DEPLOYMENT.git && \\
+                            
+                            # 작업 디렉토리로 이동
+                            cd 09_DEPLOYMENT/04_DOCKER_COMPOSE_JENKINS && \\
+                            
+                            # Docker 명령어 실행 (sudo 사용)
+                            sudo docker-compose down || true && \\
+                            sudo docker rm -f \$(sudo docker ps -aq) 2>/dev/null || true && \\
+                            sudo docker rmi -f \$(sudo docker images -q) 2>/dev/null || true && \\
+                            sudo docker-compose up -d --scale jenkins=0
+                        "
                     """
                 }
             }

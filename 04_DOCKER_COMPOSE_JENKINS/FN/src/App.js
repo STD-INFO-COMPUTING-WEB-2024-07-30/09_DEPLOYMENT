@@ -9,6 +9,8 @@ import User from './components/User'
 import {BrowserRouter as Router,Route,Routes,Link} from 'react-router-dom'
 function App() {
   return (
+    <>
+    <h1>APP.JS</h1>
     <Router>
       <div>
         <Link to="/">MAIN</Link> <br/>
@@ -27,6 +29,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
       </Routes>
     </Router>
+    </>
   );
 }
 
