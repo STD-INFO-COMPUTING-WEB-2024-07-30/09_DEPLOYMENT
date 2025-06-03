@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import axios from 'axios'
+import axios from '../api/axiosConfig'
 
 const Join  = ()=>{
     const [username ,setUsername] = useState()
@@ -8,7 +8,7 @@ const Join  = ()=>{
     const handleJoin = (e)=>{
         axios
             .post(
-                'http://localhost:8090/join',
+                '/join',
                  {"username":username,"password" : password},
                  {headers:{ 'Content-Type' : 'application/json' }}
             )

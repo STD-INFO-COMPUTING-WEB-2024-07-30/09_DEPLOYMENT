@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // axios 인스턴스 생성
 const api = axios.create({
-  baseURL: 'http://localhost:8090',
+  // baseURL: 'http://localhost:8090',
+  baseURL: process.env.REACT_APP_API_URL,      //.env에 있는 REACT_APP_API_URL 가져오기
   withCredentials: true, // HTTP-Only 쿠키 포함
 });
 

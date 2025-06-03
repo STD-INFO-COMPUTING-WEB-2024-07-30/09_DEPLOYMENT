@@ -15,23 +15,13 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY')]) {
                     sh """
-                        # SSH 키 파일 권한 설정
                         chmod 600 ${SSH_KEY}
-                        
-                        # EC2에 SSH로 접속하여 명령어 실행
                         ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} '
-                            # 기존 디렉토리 정리
-                            rm -rf ${TARGET_DIR}
-                            
-                            # GitHub 저장소 클론
-                            git clone ${GITHUB_REPO}
-                            
-                            # 작업 디렉토리로 이동
-                            cd ${TARGET_DIR}
-                            
-                            # Docker Compose 실행
-                            docker-compose down
-                            docker-compose up -d
+                            rm -rf 09_DEPLOYMENT && \
+                            git clone ${GITHUB_REPO} && \
+                            cd 09_DEPLOYMENT/04_DOCKER_COMPOSE_JENKINS && \
+                            docker-compose down && \
+                            docker-compose up -d --scale jenkins=0
                         '
                     """
                 }
