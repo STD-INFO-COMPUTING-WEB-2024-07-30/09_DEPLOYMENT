@@ -6,7 +6,7 @@ pipeline {
     environment {
         GITHUB_REPO = 'https://github.com/STD-INFO-COMPUTING-WEB-2024-07-30/09_DEPLOYMENT.git'
         TARGET_DIR = '04_DOCKER_COMPOSE_JENKINS'
-        EC2_HOST = '13.125.125.190'  // EC2 인스턴스의 퍼블릭 IP나 DNS
+        EC2_HOST = '0.0.0.0'  // EC2 인스턴스의 퍼블릭 IP나 DNS
         EC2_USER = 'ec2-user'       // EC2 사용자 이름 (Amazon Linux의 경우 'ec2-user', Ubuntu의 경우 'ubuntu')
     }
     
@@ -39,8 +39,7 @@ pipeline {
                 }
             }
         }
-    }
-    
+    }  
     post {
         success {
             echo 'Deployment to EC2 completed successfully!'
@@ -49,4 +48,5 @@ pipeline {
             echo 'Deployment to EC2 failed!'
         }
     }
+
 }     
